@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>NAME : ROSHINI S</H3>
+<H3>ENTER YOUR REGISTER NO.212223230174</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,36 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```python
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 
+df = pd.read_csv("custom_multi_year_diabetes_dataset(1).csv")
+
+df.drop(['Gender', 'Source Year'], axis=1, inplace=True)
+df.fillna(df.mean(numeric_only=True), inplace=True)
+df.drop_duplicates(inplace=True)
+df = pd.get_dummies(df, drop_first=True)
+
+X = df.drop('Diabetes', axis=1)
+y = df['Diabetes']
+
+X = MinMaxScaler().fit_transform(X)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+print(X_train.shape)
+print(X_test.shape)
+```
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+<img width="856" height="612" alt="image" src="https://github.com/user-attachments/assets/f0cd63bd-62f7-48e9-97ad-d6e55d059c60" />
+<img width="958" height="725" alt="image" src="https://github.com/user-attachments/assets/3c8de193-0d93-4248-b1b0-7d296676f355" />
+<img width="637" height="352" alt="image" src="https://github.com/user-attachments/assets/f5c1a6f6-4e2f-4af8-ab6b-471db4f5d1b4" />
+
 
 
 ## RESULT:
